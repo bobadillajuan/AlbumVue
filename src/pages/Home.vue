@@ -1,7 +1,5 @@
 <template>
-    <div class="container text-center">
-        <h1>Página de Inicio</h1>
-
+    <div class="container text-center pt-3" id="containter_principal">
         <div class="imagenes img-fluid">
 
             <div class="img-container">
@@ -23,51 +21,75 @@
         </div>
 
         
-        <div class="img-container">
-            <div class="col-md-3 boton_escritorio">
+    <div id="escritorio">
+        <h2 class="text-center" id="titulo2">Ultimos artistas</h2>
+        <div class="img-container container-fluid" id="contenedor_imagen_escritorio">
+            <div class="col-md-4 boton_escritorio">
                 <h4 class="titulo_imagen">Ver lista de artistas</h4>
                 <router-link class="btn btn-primary" to="/artistas">Ver</router-link>
-                <!-- <button class="btn btn-primary">Button</button> -->
-            </div>
-            <img src="../assets/img/Escritorio-Portada01.jpg" class="img-fluid imagen_escritorio">
-        </div>
-
-        <div class="img-container"> 
-            <div class="col-md-3 boton_escritorio">
-                <h4 class="titulo_imagen">Ver lista de artistas</h4>
-                <router-link class="btn btn-primary" to="/albumes">Ver</router-link>
-                <!-- <button class="btn btn-primary">Button</button> -->
             </div>
             <img src="../assets/img/Escritorio-Portada02.jpg" class="img-fluid imagen_escritorio">
         </div>
+        <h2 class="text-center">Últimos Álbumes</h2>
+        <div class="contenedor-componente">
+            <div class="componenteAlbum" v-for="(album, index) in albumes">
+            <AlbumComponente v-if="index < 4" :id="album.id" :key="album.id"/>
+            </div>
+        </div>
+
+        <!-- <div class="img-container"> 
+            <div class="col-md-3 boton_escritorio">
+                <h4 class="titulo_imagen">Ver lista de albumes</h4>
+                <router-link class="btn btn-primary" to="/albumes">Ver</router-link>
+            </div>
+            <img src="../assets/img/Escritorio-Portada02.jpg" class="img-fluid imagen_escritorio">
+        </div> -->
+
+    </div>
 
     </div>
 
 </template>
 
 <script>
+import endpoints from '../endpoints';
+import AlbumComponente from '../components/AlbumComponente.vue'
 export default {
+    
     name: "Home",
+    components: {
+        AlbumComponente
+    },
     data() {
         return {
-            artistas: "",
+            albumes: [],
+            index: ""
         }
+    },
+    created() {
+        endpoints.getAlbumesLista().then((listaAlbumes) =>{
+            console.log(listaAlbumes.data)
+            this.albumes = listaAlbumes.data.map((album) => {
+                return{
+                    id: album.id,
+                    nombre: album.nombre,
+                }
+            })
+        })
     },
     mounted() {
     console.log('Mounted') 
     },
+    
 
 }
 
 </script>
 
 <style>
-.parrafos{
-    display: flex;
-    flex-direction: row;
-    text-align: center;}
-.parrafos p{
-    margin: 1em;}
+
+@media (min-width: 0px) {
+
 .imagenes{
     display: flex;
     flex-direction: column;}
@@ -82,19 +104,31 @@ export default {
     justify-content: center;}
 .titulo_imagen{
     color: rgb(228, 215, 215);
-    margin: auto 1.5em auto auto;}
+    margin: auto 1.1em auto auto;}
 .boton_escritorio{
     position: absolute;
     bottom: 10%;
-    left: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height: 5%;}
-@media (min-width: 0px) {
+    left: 60%;
+    /* display: flex; */
+    /* flex-direction: row;
+    justify-content: center; */
+    height: 7%;}
+
+.btn{
+    background: #555b5e;
+    border-radius: 5%;
+    border: #646A75; 
+}
+
+#containter_principal{
+
+    border: 0;
+
+}
 .imagen_movil{
-    width: 450px;
+    width: 700px;
     margin-bottom: 1em;
+    border-radius: 0.5%;
 }
 .boton_escritorio{
     display: none;
@@ -102,8 +136,19 @@ export default {
 .imagen_escritorio{
     display: none;
     margin-bottom: 1em;
-}}
+}
+
+#escritorio{
+    display: none;
+}
+
+}
+
+
+
+
 @media (min-width: 768px) {
+
     .boton_movil{
         display: none;
     }
@@ -115,12 +160,56 @@ export default {
     }
     .imagen_escritorio{
         display: block;
+        margin-bottom: 4em;
+    }
+
+    #containter_principal{
+
+    padding-right: 3em;
+    padding-left: 3em;
+    margin-top: 2em;
+
+    width: 70%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: rgba(171, 171, 171, 1) solid 0.1em;
+    border-top: 0;
+    border-bottom: 0;
+
+    }
+
+    #escritorio{
+    width: 90%;
+    display: block;
     }
 
     .titulo_imagen{
     color: rgb(228, 215, 215);
     margin: auto 0 auto auto;
     width: 100%;
-    }}
+    }
+
+    h2{
+        color: rgb(228, 215, 215);  
+    }
+
+    .contenedor-componente{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        
+    }
+
+    .componenteAlbum{
+        height: 100% !important;
+        width: 30% !important;
+        margin: 2em;
+    }
+
+}
 
 </style>

@@ -5,11 +5,6 @@ const routes = [
         component: () => import("./pages/Home.vue"),
     },
     {
-        name: "Info",
-        path: "/info",
-        component: () => import("./pages/Info.vue"),
-    },
-    {
         name: "Listado_Artistas",
         path: "/artistas",
         component: () => import("./pages/Listado_Artistas.vue"),

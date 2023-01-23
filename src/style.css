@@ -2,7 +2,11 @@
   color: rgba(171, 171, 171, 1);
 }
 
-
+body{
+  background: #0F2027;
+  background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);
+  background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+}
 
 @media all and (min-width: 724px){
   

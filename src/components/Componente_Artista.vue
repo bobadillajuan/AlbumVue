@@ -1,5 +1,5 @@
 <template>
-    <div class="card thumbnail" id="artistCard" @click="goToDetails">
+    <div class="card thumbnail text-center" id="artistCard" @click="goToDetails">
         <h1>{{ artista.nombre }}</h1>
         <img :src="artista.imageUrl">
     </div>
@@ -44,6 +44,6 @@ export default {
 </script>
 
 <style>
-    
+
 
 </style>

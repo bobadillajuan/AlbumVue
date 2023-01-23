@@ -1,12 +1,19 @@
 <template>
-    <div>
-        <h1>{{ album.nombre }}</h1>
+    <div class="contenedor_individual">
+        <h1 class="titulo_individual">{{ album.nombre }}</h1>
+        <p class="parrafo_genero"> {{ album.genero }}, Duración: {{ album.duracion }}</p>
         <img :src="album.imageUrl" class="imagen_album">
+        <div class="contenedor_canciones">
+            <p v-for="cancion in album.canciones" class="listaCanciones">{{ cancion }}</p>
+        </div>
 
-        <Componente_Artista :id="album.artista" :key="album.artista"/>
+        <div class="contenedorComponente">
+            <Componente_Artista :id="album.artista" :key="album.artista"/>
+        </div>
 
     </div>
 </template>
+
 
 <script>
 
@@ -48,31 +55,84 @@ export default {
     components: {
         Componente_Artista
     }
-    // methods: {
-    //     getAlbums(ids){                
-    //         for(let i = 0; i < ids.length; i++){
-    //             endpoints.getAlbumIndividual(ids[i]._path.segments[1]).then((dataAlbum) => {
-    //                 this.albumesLista.push({
-    //                 nombre: dataAlbum.data.nombre,
-    //                 duracion: dataAlbum.data.duracion,
-    //                 imagen: dataAlbum.data.imagen,
-    //                 genero: dataAlbum.data.genero,
-    //                 año: dataAlbum.data.año,
-    //                 canciones: dataAlbum.data.canciones
-    //                 })
-    //             })
-    //         }
-    //     }
-    // },
 }
 </script>
 
 <style>
-    .imagen_artista{
-        width: 450px;
+
+@media (min-width: 0px) {
+
+    .contenedor_individual{
+        width: 80%;
+        margin: 0 auto;
     }
+
+    .titulo_individual{
+        color: rgb(228, 215, 215);
+        margin: 1em;
+        text-align: center;
+    }
+
+    .parrafo_genero{
+    color: rgb(228, 215, 215);
+    text-align: center;
+    margin: 1em;
+    padding-bottom: 1em;
+    font-size: 1.2em;
+    border: rgba(171, 171, 171, 1) solid 0.1em;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    }
+
     .imagen_album{
-        width: 300px;
+        width: 100%;
+        margin: 0 auto;
+
     }
+
+    .contenedor_canciones{
+        margin-top: 1em;
+        margin-bottom: 2em;
+        padding-bottom: 1em;
+        border: rgba(171, 171, 171, 1) solid 0.1em;
+        border-top: 0;
+        border-left: 0;
+        border-right: 0;
+    }
+
+    .listaCanciones{
+        color: rgb(228, 215, 215);
+        text-align: center;
+        margin: 0;
+    }
+
+    .contenedorComponente{
+        margin: 0 auto;
+        width: 70%;
+        margin-bottom: 2em;
+    }
+    
+}
+
+@media (min-width: 768px) {
+
+    .contenedor_individual{
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .imagen_album{
+        width: 50%;
+    }
+
+    .contenedorComponente{
+        width: 50%;
+        margin-bottom: 4em;
+    }
+
+}
+
 
 </style>
