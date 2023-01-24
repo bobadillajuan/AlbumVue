@@ -1,7 +1,7 @@
 <template>
         <h2 class="text-center titulo_listado">Listado de Albumes</h2>
-        <div class="componentesListado">
-        <AlbumComponente class="componenteAlbum" v-for="album in albumes" :id="album.id" :key="album.id"/>
+        <div class="albumes-listado-contenedor-componente">
+        <AlbumComponente class="albumes-listado-componente-album" v-for="album in albumes" :id="album.id" :key="album.id"/>
         </div>
 </template>
 
@@ -33,41 +33,39 @@ export default {
 </script>
 <style>
 
-.componentesListado{
+.albumes-listado-contenedor-componente{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    justify-content: space-evenly;
     
 }
 
-
-.componenteAlbum{
-    width: 30%;
-    margin: 1em;
+.albumes-listado-componente-album{
+    width: 40%;
+    margin: 0.5em;
     text-align: center;
-    height: 41vh;
+    height: 40vh;
 }
 
 @media (min-width: 768px) {
 
-    .componentesListado{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    .albumes-listado-contenedor-componente{
     margin: 0 auto;
-    width: 60%;
+    width: 50%;
 
     border: rgba(171, 171, 171, 1) solid 0.1em;
     border-top: 0;
-    border-bottom: 0;   
+    border-bottom: 0;
 
     }
 
-    .componenteAlbum{
+    .albumes-listado-componente-album{
     width: 25%;
-    margin: 2em;
     text-align: center;
+    height: 40vh !important;
+    width: 30% !important;
+    margin: 0.5em;
     }
 
 }
