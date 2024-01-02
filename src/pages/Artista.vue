@@ -4,7 +4,7 @@
         <p class="parrafo_genero"> {{ artista.origen }}, {{ artista.genero }}</p>
         <p class="parrafo_individual">{{ artista.descripcion }}</p>
         <img :src="artista.imageUrl" class="imagen_artista">
-            <div>
+            <div class="contenedor_listado">
                 <h2 class="titulo_individual">Albumes</h2>
                 <div class="AlbumesListado">
                     <AlbumComponente class="AlbumComponente" v-for="album in albumesLista" :id="album.id" :key="album.id"/>
@@ -124,7 +124,7 @@ text-align: center;
     border-top: 0;
     border-left: 0;
     border-right: 0;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 
 }
 
@@ -187,6 +187,10 @@ text-align: center;
         width: 70%;
         margin: 0 auto;
         margin-bottom: 2em;
+    }
+
+    .contenedor_listado{
+        padding-bottom: 0.5em;
     }
 
 }
